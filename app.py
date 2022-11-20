@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, send_from_directory
-from functions import load_posts
+from utils import get_posts_all
 
 
 POST_PATH = "data/posts.json"
@@ -10,8 +10,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def page_index():
-    post = load_posts()
-    return render_template('index.html', item=post)
+    post = get_posts_all()
+    return render_template('index.html', items=post)
 
 
-app.run()
+app.run(host='0.0.0.0', port=8000)

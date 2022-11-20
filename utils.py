@@ -1,6 +1,12 @@
+import json
 
 def get_posts_all():
-    """Возврашает посты"""
+    """
+    Возвращает посты в формате словаря
+    :return: посты в формате словаря
+    """
+    with open('data/posts.json', 'r', encoding='utf-8') as file:
+        return json.load(file)
 
 
 
