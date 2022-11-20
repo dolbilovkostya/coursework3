@@ -19,13 +19,22 @@ def get_posts_by_user(user_name):
     """
 
 
-def get_comments_by_post_id(post_id):
+def get_comments_by_post_id(post_pk):
     """
     возвращает комментарии определенного поста. Функция должна вызывать ошибку ValueError если такого поста нет
     и пустой список, если у поста нет комментов.
     :param post_id: id поста
     :return: комментарии определенного поста
     """
+    with open('data/comments.json', 'r', encoding='utf-8') as file:
+        comments = json.load(file)
+        comments_list = []
+        for comment in comments:
+            if post_pk == int(comment['post_id']):
+                comments_list.append(comment)
+        return comments_list
+
+print(get_comments_by_post_id(1))
 
 
 def search_for_posts(query):
