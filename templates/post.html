@@ -32,21 +32,19 @@
             <div class="item__ava-wrap">
               <img src="/static/img/ava1.png" alt="" class="item__ava" width="47">
             </div>
-            <span class="item__username">Username</span>
+            <span class="item__username">{{ items.poster_name }}</span>
           </a>
           <button type="button" class="item__bookmark-btn">
             <img src="/static/img/bookmark.png" alt="" class="item__bookmark-icon" width="24">
           </button>
         </div>
         <a href="" class="item__post-link">
-          <img src="/static/img/post1.jpg" alt="" width="348" class="item__post-img">
+          <img src="{{ items.pic }}" alt="" width="348" class="item__post-img">
         </a>
         <div class="item__descr">
           <p class="item__text">
-            Закрытые бутерброды пришли к&nbsp;нам из&nbsp;Англии. Вкусные и&nbsp;простые рецепты сэндвичей с&nbsp;фото позволят вам разнообразить завтраки и&nbsp;сделать перекусы более сытными! Они могут быть, как горячими, так и&nbsp;холодными.
+            {{ items.content }}
           </p>
-          <p class="item__text">
-            Итальянские закрытые сэндвичи называются панини. Для их&nbsp;приготовления берут чиабатту. В&nbsp;классическом рецепте используют традиционные итальянские продукты: помидоры, базилик, мацареллу.</p>
         </div>
         <div class="item__bottom">
           <div class="item__post-info">

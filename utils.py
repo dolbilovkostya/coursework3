@@ -42,3 +42,8 @@ def get_post_by_pk(pk):
     :param pk: илентификатор поста
     :return: пост по заданному идентификатору
     """
+    with open('data/posts.json', 'r', encoding='utf-8') as file:
+        posts_list = json.load(file)
+        for item in posts_list:
+            if pk == int(item['pk']):
+                return item
