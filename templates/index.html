@@ -26,23 +26,23 @@
   <main class="container">
 
     <div class="search">
-      <form action="/search" class="search__form">
-        <input type="search" class="search__input">
+      <form action="/search/" class="search__form" method="get">
+        <input type="text" name="s" class="search__input">
       </form>
     </div>
 
     <section class="items">
-      {% for post in items %}
+      {% for post in item %}
       <div class="item">
         <div class="item__top">
-          <a href="/templates/user-feed.html-feed.html" class="item__head">
+          <a href="/templates/user-feed." class="item__head">
             <div class="item__ava-wrap">
               <img src="{{ post.poster_avatar }}" alt="" class="item__ava" width="47">
             </div>
             <span class="item__username">{{ post.poster_name }}</span>
           </a>
         </div>
-        <a href="/templates/post.html/post.html" class="item__post-link">
+        <a href="/templates/post.html" class="item__post-link">
           <img src="{{ post.pic }}" alt="" width="348" class="item__post-img">
         </a>
         <p class="item__descr">{{ post.content }}</p>

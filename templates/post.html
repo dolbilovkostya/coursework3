@@ -11,7 +11,7 @@
 <body>
 <header class="container header">
     <div class="header__wrapper">
-        <a href="/" class="header__btn-back">
+        <a href="/search/" class="header__btn-back">
             <svg class="header__btn-icon" width="19" height="16">
                 <use xmlns:xlink="http://www.w3.org/1999/xlink" xlink:href="#back"></use>
             </svg>
@@ -30,7 +30,7 @@
             <div class="item__top">
                 <a href="/templates/user-feed.html-feed.html" class="item__head">
                     <div class="item__ava-wrap">
-                        <img src="/static/img/ava1.png" alt="" class="item__ava" width="47">
+                        <img src="{{ items.poster_avatar }}" alt="" class="item__ava" width="47">
                     </div>
                     <span class="item__username">{{ items.poster_name }}</span>
                 </a>

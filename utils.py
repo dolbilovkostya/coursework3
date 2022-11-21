@@ -34,8 +34,6 @@ def get_comments_by_post_id(post_pk):
                 comments_list.append(comment)
         return comments_list
 
-print(get_comments_by_post_id(1))
-
 
 def search_for_posts(query):
     """
@@ -43,7 +41,13 @@ def search_for_posts(query):
     :param query: ключевое слово
     :return: список постов
     """
+    search_results = []
+    for post in get_posts_all():
+        if query.lower() in post['content'].lower():
+            search_results.append(post)
+    return search_results
 
+print(search_for_posts('елки'))
 
 def get_post_by_pk(pk):
     """
