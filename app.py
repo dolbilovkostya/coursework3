@@ -1,5 +1,5 @@
 from flask import Flask, request, render_template, send_from_directory
-from utils import get_posts_all, get_post_by_pk, get_comments_by_post_id, search_for_posts
+from utils import get_posts_all, get_post_by_pk, get_comments_by_post_id, search_for_posts, get_posts_by_user
 import logging
 
 POST_PATH = "data/posts.json"
@@ -25,8 +25,13 @@ def page_post(postid):
 def search_page():
     search_query = request.args.get('s', '')
     posts = search_for_posts(search_query)
-
     return render_template('search.html', search__input=search_query, items=posts)
+
+
+@app.route("/users/<username>")
+def user_page(username):
+    posts = get_posts_by_user(username)
+    return render_template('user-feed.html', items=posts)
 
 
 app.run(host='0.0.0.0', port=800)

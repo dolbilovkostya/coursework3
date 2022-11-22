@@ -17,6 +17,11 @@ def get_posts_by_user(user_name):
     :param user_name: имя польщователя
     :return: посты определенного пользователя
     """
+    user_posts = []
+    for post in get_posts_all():
+        if user_name.lower() == post['poster_name'].lower():
+            user_posts.append(post)
+    return user_posts
 
 
 def get_comments_by_post_id(post_pk):

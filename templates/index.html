@@ -35,7 +35,7 @@
       {% for post in item %}
       <div class="item">
         <div class="item__top">
-          <a href="/templates/user-feed." class="item__head">
+          <a href="/users/{{ post.poster_name }}" class="item__head">
             <div class="item__ava-wrap">
               <img src="{{ post.poster_avatar }}" alt="" class="item__ava" width="47">
             </div>
