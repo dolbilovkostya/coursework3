@@ -34,4 +34,13 @@ def user_page(username):
     return render_template('user-feed.html', items=posts)
 
 
+@app.errorhandler(404)
+def page_not_found(e):
+    """
+    в функцию `render_template()` передаем HTML-станицу с собственным
+    дизайном, а так же явно устанавливаем статус 404
+    """
+    return render_template('404.html'), 404
+
+
 app.run(host='0.0.0.0', port=800)
