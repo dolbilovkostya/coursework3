@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template, send_from_directory
+from flask import Flask, request, render_template, jsonify, send_from_directory
 from utils import get_posts_all, get_post_by_pk, get_comments_by_post_id, search_for_posts, get_posts_by_user
 import logging
 import requests
@@ -51,6 +51,18 @@ def page_not_found(e):
     дизайном, а так же явно устанавливаем статус 500
     """
     return render_template('500.html'), 500
+
+
+@app.route("/api/posts")
+def return_posts_by_json():
+    posts = get_posts_all()
+    return render_template('api_posts.html', items=posts)
+
+
+@app.route("/api/posts/<int:postid>")
+def return_post_by_json(postid):
+    post = get_post_by_pk(postid)
+    return render_template('api_posts_post.html', items=post)
 
 
 app.run(host='0.0.0.0', port=800)
