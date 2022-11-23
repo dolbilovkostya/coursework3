@@ -43,4 +43,13 @@ def page_not_found(e):
     return render_template('404.html'), 404
 
 
+@app.errorhandler(500)
+def page_not_found(e):
+    """
+    в функцию `render_template()` передаем HTML-станицу с собственным
+    дизайном, а так же явно устанавливаем статус 500
+    """
+    return render_template('500.html'), 500
+
+
 app.run(host='0.0.0.0', port=800)
