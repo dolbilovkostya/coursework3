@@ -55,12 +55,21 @@ def page_not_found(e):
 
 @app.route("/api/posts")
 def return_posts_by_json():
+    """
+    Возвращает список JSON-словаря со всеми постами
+    :return: список со словарем
+    """
     posts = get_posts_all()
     return render_template('api_posts.html', items=posts)
 
 
 @app.route("/api/posts/<int:postid>")
 def return_post_by_json(postid):
+    """
+    Возвращает JSON-словарь с одним постом по заданному postid
+    :param postid: Номер поста
+    :return: JSON-словарь
+    """
     post = get_post_by_pk(postid)
     return render_template('api_posts_post.html', items=post)
 
