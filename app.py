@@ -1,7 +1,6 @@
-from flask import Flask, request, render_template, jsonify, send_from_directory
+from flask import Flask, request, render_template
 from utils import get_posts_all, get_post_by_pk, get_comments_by_post_id, search_for_posts, get_posts_by_user
 import logging
-import requests
 
 POST_PATH = "data/posts.json"
 UPLOAD_FOLDER = "uploads/images"
@@ -60,6 +59,8 @@ def return_posts_by_json():
     :return: список со словарем
     """
     posts = get_posts_all()
+    logging.basicConfig(level=logging.INFO, filename='logs/api.log', format='%(asctime)s [%(levelname)s] %(message)s')
+    logging.info('Запрос api/posts')
     return render_template('api_posts.html', items=posts)
 
 
@@ -71,6 +72,10 @@ def return_post_by_json(postid):
     :return: JSON-словарь
     """
     post = get_post_by_pk(postid)
+    path = f'api/posts/{postid}'
+    logging.basicConfig(level=logging.INFO, filename='logs/api.log', format='%(asctime)s [%(levelname)s] %(message)s')
+    logging.info(f'Запрос {path}')
+
     return render_template('api_posts_post.html', items=post)
 
 
