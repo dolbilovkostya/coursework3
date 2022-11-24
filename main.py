@@ -10,12 +10,21 @@ app = Flask(__name__)
 
 @app.route("/")
 def page_index():
+    """
+    Представление главной страницы
+    :return: Список постов
+    """
     post = get_posts_all()
     return render_template('index.html', item=post)
 
 
 @app.route("/posts/<int:postid>")
 def page_post(postid):
+    """
+    Представление страницы поста по его номеру
+    :param postid: Номер поста
+    :return: Пост пользователя
+    """
     post = get_post_by_pk(postid)
     comments = get_comments_by_post_id(postid)
     return render_template('post.html', items=post, item__bottom=comments)
@@ -23,6 +32,10 @@ def page_post(postid):
 
 @app.route("/search/")
 def search_page():
+    """
+    Представление поиска
+    :return: Список постов по заданному поиску
+    """
     search_query = request.args.get('s', '')
     posts = search_for_posts(search_query)
     return render_template('search.html', search__input=search_query, items=posts)
@@ -30,12 +43,22 @@ def search_page():
 
 @app.route("/users/<username>")
 def user_page(username):
+    """
+    Представление стрницы пользователя
+    :param username: Номер пользователя
+    :return: Список постов пользователя
+    """
     posts = get_posts_by_user(username)
     return render_template('user-feed.html', items=posts)
 
 
 @app.route("/tag/<tagname>")
 def tag_page(tagname):
+    """
+    Представление страницы поиска по хэштегу
+    :param tagname: Хэштег
+    :return: Список постов содержащих хэштег
+    """
     posts = get_posts_all()
     return render_template('user-feed.html', items=posts)
 
