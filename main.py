@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from utils import get_posts_all, get_post_by_pk, get_comments_by_post_id, search_for_posts, get_posts_by_user
 import logging
 
@@ -34,6 +34,12 @@ def user_page(username):
     return render_template('user-feed.html', items=posts)
 
 
+@app.route("/tag/<tagname>")
+def tag_page(tagname):
+    posts = get_posts_all()
+    return render_template('user-feed.html', items=posts)
+
+
 @app.errorhandler(404)
 def page_not_found(e):
     """
@@ -52,7 +58,7 @@ def page_not_found(e):
     return render_template('500.html'), 500
 
 
-@app.route("/api/posts")
+@app.route("/api/posts", methods=['GET'])
 def return_posts_by_json():
     """
     Возвращает список JSON-словаря со всеми постами
@@ -61,10 +67,11 @@ def return_posts_by_json():
     posts = get_posts_all()
     logging.basicConfig(level=logging.INFO, filename='logs/api.log', format='%(asctime)s [%(levelname)s] %(message)s')
     logging.info('Запрос api/posts')
-    return render_template('api_posts.html', items=posts)
+    return jsonify(posts)
+    # return render_template('api_posts.html', items=posts)
 
 
-@app.route("/api/posts/<int:postid>")
+@app.route("/api/posts/<int:postid>", methods=['GET'])
 def return_post_by_json(postid):
     """
     Возвращает JSON-словарь с одним постом по заданному postid
@@ -75,8 +82,8 @@ def return_post_by_json(postid):
     path = f'api/posts/{postid}'
     logging.basicConfig(level=logging.INFO, filename='logs/api.log', format='%(asctime)s [%(levelname)s] %(message)s')
     logging.info(f'Запрос {path}')
-
-    return render_template('api_posts_post.html', items=post)
+    return jsonify(post)
+    # return render_template('api_posts_post.html', items=post)
 
 
 app.run(host='0.0.0.0', port=800)

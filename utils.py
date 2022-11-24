@@ -1,5 +1,6 @@
 import json
 
+
 def get_posts_all():
     """
     Возвращает посты в формате словаря
@@ -7,7 +8,6 @@ def get_posts_all():
     """
     with open('data/posts.json', 'r', encoding='utf-8') as file:
         return json.load(file)
-
 
 
 def get_posts_by_user(user_name):
@@ -52,7 +52,6 @@ def search_for_posts(query):
             search_results.append(post)
     return search_results
 
-print(search_for_posts('елки'))
 
 def get_post_by_pk(pk):
     """
