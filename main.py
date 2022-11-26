@@ -1,6 +1,7 @@
-from flask import Flask, request, render_template, jsonify
+from flask import Flask, request, render_template, jsonify, redirect
 from utils import get_posts_all, get_post_by_pk, get_comments_by_post_id, search_for_posts, get_posts_by_user
 import logging
+import json
 
 POST_PATH = "data/posts.json"
 UPLOAD_FOLDER = "uploads/images"
@@ -39,6 +40,25 @@ def search_page():
     search_query = request.args.get('s', '')
     posts = search_for_posts(search_query)
     return render_template('search.html', search__input=search_query, items=posts)
+
+
+@app.route("/bookmarks/add/<int:postid>", methods=['GET', 'POST'])
+def add_to_bookmarks(postid):
+    """
+    Добавление поста в закладки
+    :param postid: Номер поста
+    :return: После довабления возвращает на главнуюстраницу
+    """
+    with open('data/bookmarks.json', 'r', encoding='utf-8') as file:
+        bookmarks = json.load(file)
+
+    post = get_post_by_pk(postid)
+    bookmarks.append(post)
+
+    with open('data/bookmarks.json', 'w', encoding='utf-8') as file:
+        json.dump(bookmarks, file)
+
+    return redirect("/", code = 302)
 
 
 @app.route("/users/<username>")
