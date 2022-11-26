@@ -47,13 +47,33 @@ def add_to_bookmarks(postid):
     """
     Добавление поста в закладки
     :param postid: Номер поста
-    :return: После довабления возвращает на главнуюстраницу
+    :return: После довабления поста возвращает на главную страницу
     """
     with open('data/bookmarks.json', 'r', encoding='utf-8') as file:
         bookmarks = json.load(file)
 
     post = get_post_by_pk(postid)
     bookmarks.append(post)
+
+    with open('data/bookmarks.json', 'w', encoding='utf-8') as file:
+        json.dump(bookmarks, file)
+
+    return redirect("/", code=302)
+
+
+@app.route("/bookmarks/remove/<int:postid>", methods=['GET', 'POST'])
+def remove_to_bookmarks(postid):
+    """
+    Удаление поста в закладки
+    :param postid: Номер поста
+    :return: После удаления поста возвращает на главную страницу
+    """
+    with open('data/bookmarks.json', 'r', encoding='utf-8') as file:
+        bookmarks = json.load(file)
+
+    for post in bookmarks:
+        if postid == post['pk']:
+            bookmarks.remove(post)
 
     with open('data/bookmarks.json', 'w', encoding='utf-8') as file:
         json.dump(bookmarks, file)
