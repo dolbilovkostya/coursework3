@@ -16,7 +16,14 @@ def page_index():
     :return: Список постов
     """
     post = get_posts_all()
-    return render_template('index.html', item=post)
+
+    """
+    Передаю в шаблон список с закладками и вывожу в счетчике закладок длину этого списка
+    """
+    with open('data/bookmarks.json', 'r', encoding='utf-8') as file:
+        bookmarks = json.load(file)
+
+    return render_template('index.html', item=post, header__wrapper=bookmarks)
 
 
 @app.route("/posts/<int:postid>")
@@ -40,6 +47,17 @@ def search_page():
     search_query = request.args.get('s', '')
     posts = search_for_posts(search_query)
     return render_template('search.html', search__input=search_query, items=posts)
+
+
+@app.route("/users/<username>")
+def user_page(username):
+    """
+    Представление стрницы пользователя
+    :param username: Номер пользователя
+    :return: Список постов пользователя
+    """
+    posts = get_posts_by_user(username)
+    return render_template('user-feed.html', items=posts)
 
 
 @app.route("/bookmarks/add/<int:postid>", methods=['GET', 'POST'])
@@ -81,15 +99,16 @@ def remove_to_bookmarks(postid):
     return redirect("/", code = 302)
 
 
-@app.route("/users/<username>")
-def user_page(username):
+@app.route("/bookmarks", methods=['GET'])
+def bookmarks_page():
     """
-    Представление стрницы пользователя
-    :param username: Номер пользователя
-    :return: Список постов пользователя
+    Представление страницы с закладками
+    :return: Страница с закладками
     """
-    posts = get_posts_by_user(username)
-    return render_template('user-feed.html', items=posts)
+    with open('data/bookmarks.json', 'r', encoding='utf-8') as file:
+        bookmarks = json.load(file)
+
+    return render_template('bookmarks.html', items=bookmarks)
 
 
 @app.route("/tag/<tagname>")
