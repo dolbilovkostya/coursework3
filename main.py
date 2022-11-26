@@ -71,7 +71,19 @@ def add_to_bookmarks(postid):
         bookmarks = json.load(file)
 
     post = get_post_by_pk(postid)
-    bookmarks.append(post)
+    posts_in_bookmarks = []
+
+    """
+    Проходим по списку закладок и добавляем все номера постов
+    """
+    for item in bookmarks:
+        posts_in_bookmarks.append(int(item['pk']))
+
+    """
+    Если пост с таким postid уже есть в закладках, то он не добавится в список закладок
+    """
+    if postid not in posts_in_bookmarks:
+        bookmarks.append(post)
 
     with open('data/bookmarks.json', 'w', encoding='utf-8') as file:
         json.dump(bookmarks, file)
