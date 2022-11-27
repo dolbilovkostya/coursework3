@@ -94,7 +94,7 @@ def add_to_bookmarks(postid):
 @app.route("/bookmarks/remove/<int:postid>", methods=['GET', 'POST'])
 def remove_to_bookmarks(postid):
     """
-    Удаление поста в закладки
+    Удаление поста из закладок
     :param postid: Номер поста
     :return: После удаления поста возвращает на главную страницу
     """
