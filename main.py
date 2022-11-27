@@ -59,7 +59,7 @@ def user_page(username):
     :return: Список постов пользователя
     """
     posts = get_posts_by_user(username)
-    return render_template('user-feed.html', items=posts)
+    return render_template('user-feed.html', items=posts, username=username)
 
 
 @app.route("/bookmarks/add/<int:postid>", methods=['GET', 'POST'])

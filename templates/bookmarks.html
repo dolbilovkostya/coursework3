@@ -36,7 +36,7 @@
                 </a>
                 <a href="/bookmarks/remove/{{ post.pk }}" class="item__delete">Удалить</a>
             </div>
-            <a href="/templates/post.html" class="item__post-link">
+            <a href="/posts/{{ post.pk }}" class="item__post-link">
                 <img src="{{ post.pic }}" alt="" width="348" class="item__post-img">
             </a>
             <p class="item__descr">{{ post.content }}<a href="/posts/{{ post.pk }}" class="item__btn-more">Еще</a></p>

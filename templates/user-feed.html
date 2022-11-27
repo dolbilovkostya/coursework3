@@ -17,7 +17,7 @@
             </svg>
         </a>
         <a href="/" class="header__logo-link">
-            <h1 class="header__logo-text">Skypro 08</h1>
+            <h1 class="header__logo-text">{{ username }}</h1>
         </a>
     </div>
 </header>
@@ -33,7 +33,7 @@
                     <span class="item__username">{{ post.poster_name }}</span>
                 </a>
             </div>
-            <a href="/templates/post.html/post.html" class="item__post-link">
+            <a href="/posts/{{ post.pk }}" class="item__post-link">
                 <img src="{{ post.pic }}" alt="" width="348" class="item__post-img">
             </a>
             <p class="item__descr"><a href="/tag/food" class="item__tag">#food</a>{{ post.content }}</p>
