@@ -1,12 +1,14 @@
 from flask import Flask, request, render_template, jsonify, redirect
 from utils import get_posts_all, get_post_by_pk, get_comments_by_post_id, search_for_posts, get_posts_by_user
-import logging
 import json
+from api.api import api_blueprint
 
 POST_PATH = "data/posts.json"
 UPLOAD_FOLDER = "uploads/images"
 
 app = Flask(__name__)
+app.config['JSON_AS_ASCII'] = False
+app.register_blueprint(api_blueprint)
 
 
 @app.route("/")
@@ -152,32 +154,31 @@ def page_not_found(e):
     return render_template('500.html'), 500
 
 
-@app.route("/api/posts", methods=['GET'])
-def return_posts_by_json():
-    """
-    Возвращает список JSON-словаря со всеми постами
-    :return: список со словарем
-    """
-    posts = get_posts_all()
-    logging.basicConfig(level=logging.INFO, filename='logs/api.log', format='%(asctime)s [%(levelname)s] %(message)s')
-    logging.info('Запрос api/posts')
-    return jsonify(posts)
-    # return render_template('api_posts.html', items=posts)
+# @app.route("/api/posts", methods=['GET'])
+# def return_posts_by_json():
+#     """
+#     Возвращает список JSON-словаря со всеми постами
+#     :return: список со словарем
+#     """
+#     posts = get_posts_all()
+#     logging.basicConfig(level=logging.INFO, filename='logs/api.log', format='%(asctime)s [%(levelname)s] %(message)s')
+#     logging.info('Запрос api/posts')
+#     return jsonify(posts)
 
 
-@app.route("/api/posts/<int:postid>", methods=['GET'])
-def return_post_by_json(postid):
-    """
-    Возвращает JSON-словарь с одним постом по заданному postid
-    :param postid: Номер поста
-    :return: JSON-словарь
-    """
-    post = get_post_by_pk(postid)
-    path = f'api/posts/{postid}'
-    logging.basicConfig(level=logging.INFO, filename='logs/api.log', format='%(asctime)s [%(levelname)s] %(message)s')
-    logging.info(f'Запрос {path}')
-    return jsonify(post)
-    # return render_template('api_posts_post.html', items=post)
+# @app.route("/api/posts/<int:postid>", methods=['GET'])
+# def return_post_by_json(postid):
+#     """
+#     Возвращает JSON-словарь с одним постом по заданному postid
+#     :param postid: Номер поста
+#     :return: JSON-словарь
+#     """
+#     post = get_post_by_pk(postid)
+#     path = f'api/posts/{postid}'
+#     logging.basicConfig(level=logging.INFO, filename='logs/api.log', format='%(asctime)s [%(levelname)s] %(message)s')
+#     logging.info(f'Запрос {path}')
+#     return jsonify(post)
+
 
 
 app.run(host='0.0.0.0', port=800)

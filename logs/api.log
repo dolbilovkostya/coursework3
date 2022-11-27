@@ -52,3 +52,50 @@
 2022-11-26 15:30:15,196 [INFO] 127.0.0.1 - - [26/Nov/2022 15:30:15] "GET /api/posts HTTP/1.1" 200 -
 2022-11-26 15:30:21,629 [INFO] Запрос api/posts/3
 2022-11-26 15:30:21,630 [INFO] 127.0.0.1 - - [26/Nov/2022 15:30:21] "GET /api/posts/3 HTTP/1.1" 200 -
+2022-11-27 23:57:17,899 [INFO] Запрос api/posts
+2022-11-27 23:57:17,899 [ERROR] Exception on /api/posts [GET]
+Traceback (most recent call last):
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 2525, in wsgi_app
+    response = self.full_dispatch_request()
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1822, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1820, in full_dispatch_request
+    rv = self.dispatch_request()
+         ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Library/Frameworks/Python.framework/Versions/3.11/lib/python3.11/site-packages/flask/app.py", line 1796, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/dolbilov/PycharmProjects/coursework2_source/api/api.py", line 18, in get_all_posts
+    return jsonify(load_posts())
+                   ^^^^^^^^^^^^
+  File "/Users/dolbilov/PycharmProjects/coursework2_source/api/utils.py", line 5, in load_posts
+    with open('/data/posts.json', 'r', encoding='utf-8') as file:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data/posts.json'
+2022-11-27 23:57:17,906 [INFO] 127.0.0.1 - - [27/Nov/2022 23:57:17] "[35m[1mGET /api/posts HTTP/1.1[0m" 500 -
+2022-11-27 23:57:17,913 [INFO] 127.0.0.1 - - [27/Nov/2022 23:57:17] "[36mGET /static/css/styles.min.css HTTP/1.1[0m" 304 -
+2022-11-27 23:58:00,333 [INFO] Запрос api/posts
+2022-11-27 23:58:00,334 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:00] "GET /api/posts HTTP/1.1" 200 -
+2022-11-27 23:58:35,784 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:35] "GET / HTTP/1.1" 200 -
+2022-11-27 23:58:35,794 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:35] "[36mGET /static/img/eye.png HTTP/1.1[0m" 304 -
+2022-11-27 23:58:35,797 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:35] "[36mGET /static/css/styles.min.css HTTP/1.1[0m" 304 -
+2022-11-27 23:58:35,797 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:35] "[36mGET /static/img/bookmark.png HTTP/1.1[0m" 304 -
+2022-11-27 23:58:48,774 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:48] "GET / HTTP/1.1" 200 -
+2022-11-27 23:58:48,785 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:48] "[36mGET /static/css/styles.min.css HTTP/1.1[0m" 304 -
+2022-11-27 23:58:48,786 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:48] "[36mGET /static/img/bookmark.png HTTP/1.1[0m" 304 -
+2022-11-27 23:58:48,794 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:48] "[36mGET /static/img/eye.png HTTP/1.1[0m" 304 -
+2022-11-27 23:58:48,813 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:48] "[33mGET /favicon.ico HTTP/1.1[0m" 404 -
+2022-11-27 23:58:55,351 [INFO] Запрос api/posts
+2022-11-27 23:58:55,353 [INFO] 127.0.0.1 - - [27/Nov/2022 23:58:55] "GET /api/posts HTTP/1.1" 200 -
+2022-11-27 23:59:47,818 [INFO] Запрос api/posts
+2022-11-27 23:59:47,820 [INFO] 127.0.0.1 - - [27/Nov/2022 23:59:47] "GET /api/posts HTTP/1.1" 200 -
+2022-11-28 00:00:03,452 [INFO] Запрос api/posts/3
+2022-11-28 00:00:03,453 [INFO] 127.0.0.1 - - [28/Nov/2022 00:00:03] "GET /api/posts/3 HTTP/1.1" 200 -
+2022-11-28 00:00:19,099 [INFO] Запрос api/posts/2
+2022-11-28 00:00:19,101 [INFO] 127.0.0.1 - - [28/Nov/2022 00:00:19] "GET /api/posts/2 HTTP/1.1" 200 -
+2022-11-28 00:01:03,594 [INFO] Запрос api/posts/3
+2022-11-28 00:01:03,597 [INFO] 127.0.0.1 - - [28/Nov/2022 00:01:03] "GET /api/posts/3 HTTP/1.1" 200 -
+2022-11-28 00:01:09,878 [INFO] Запрос api/posts/1
+2022-11-28 00:01:09,880 [INFO] 127.0.0.1 - - [28/Nov/2022 00:01:09] "GET /api/posts/1 HTTP/1.1" 200 -
