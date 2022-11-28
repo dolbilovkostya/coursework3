@@ -58,6 +58,7 @@ def user_page(username):
     :param username: Номер пользователя
     :return: Список постов пользователя
     """
+
     posts = get_posts_by_user(username)
     return render_template('user-feed.html', items=posts, username=username)
 

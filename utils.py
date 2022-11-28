@@ -18,10 +18,16 @@ def get_posts_by_user(user_name):
     :return: посты определенного пользователя -> list[dict]
     """
     user_posts = []
-    for post in get_posts_all():
-        if user_name.lower() == post['poster_name'].lower():
-            user_posts.append(post)
-    return user_posts
+    try:
+        for post in get_posts_all():
+            if user_name.lower() == post['poster_name'].lower():
+                user_posts.append(post)
+        return user_posts
+    except ValueError:
+        print("Такого пользователя нет")
+    except user_posts == []:
+        return user_posts
+
 
 
 def get_comments_by_post_id(post_pk):
@@ -34,10 +40,15 @@ def get_comments_by_post_id(post_pk):
     with open('data/comments.json', 'r', encoding='utf-8') as file:
         comments = json.load(file)
         comments_list = []
-        for comment in comments:
-            if post_pk == int(comment['post_id']):
-                comments_list.append(comment)
-        return comments_list
+        try:
+            for comment in comments:
+                if post_pk == int(comment['post_id']):
+                    comments_list.append(comment)
+            return comments_list
+        except ValueError:
+            print("Комментариев к данному посту нет")
+        except comments_list == []:
+            return comments_list
 
 
 def search_for_posts(query):
